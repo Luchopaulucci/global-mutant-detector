@@ -280,27 +280,46 @@ Las clases sin lógica (DTOs, Config, Repository) no bajan la cobertura total.
 
 ---
 
-## Ejecución Local
+## 🚀 Ejecución Local
 
+Para correr la aplicación localmente:
 ```bash
 ./gradlew bootRun
 ```
 
-Swagger UI: `http://localhost:8080/swagger-ui.html`
+La API quedará disponible en:
+* http://localhost:8080
+
+### 📘 Swagger UI (Documentación)
+Acceso directo a la documentación interactiva:
+
+👉 http://localhost:8080/swagger-ui.html
 
 ---
 
-## Deploy en Render
+## 🌐 Deploy en Render
 
-**Build command:**
+La aplicación está desplegada de forma pública en Render:
+
+🔗 **https://global-mutant-detector.onrender.com/**
+
+### ⚙️ Configuración usada en Render
+
+#### Build Command
+Render compila el proyecto ejecutando:
 ```bash
 ./gradlew clean build -x test
 ```
 
-**Start command:**
+(Se excluyen los tests para acelerar el build, ya que fueron ejecutados y validados localmente.)
+
+#### Start Command
+Render inicia la aplicación ejecutando el JAR generado:
 ```bash
 java -jar build/libs/*.jar
 ```
+
+Render detecta automáticamente que es una aplicación Java y usa OpenJDK 17 para ejecutarla.
 
 ---
 
