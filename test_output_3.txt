@@ -1,0 +1,180 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/Users/palucho/.gradle/wrapper/dists/gradle-8.14-bin/38aieal9i53h9rfe7vjup95b9/gradle-8.14/lib/native-platform-0.22-milestone-28.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+Initialized native services in: /Users/palucho/.gradle/native
+Initialized jansi services in: /Users/palucho/.gradle/native
+Found daemon DaemonInfo{pid=2286, address=[35914414-7492-4e21-85f0-d4959096732b port:51044, addresses:[/127.0.0.1]], state=Idle, lastBusy=1763956304223, context=DefaultDaemonContext[uid=766fbd1a-505e-4c39-9210-0d931aed867d,javaHome=/opt/homebrew/Cellar/openjdk@21/21.0.8/libexec/openjdk.jdk/Contents/Home,javaVersion=21,javaVendor=Homebrew,daemonRegistryDir=/Users/palucho/.gradle/daemon,pid=2286,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-XX:MaxMetaspaceSize=384m,-XX:+HeapDumpOnOutOfMemoryError,-Xms256m,-Xmx512m,-Dfile.encoding=UTF-8,-Duser.country=AR,-Duser.language=es,-Duser.variant]} however its context does not match the desired criteria.
+JVM is incompatible.
+Wanted: DaemonRequestContext{jvmCriteria=/Users/palucho/Library/Java/JavaVirtualMachines/openjdk-24.0.2+12-54/Contents/Home (no JDK specified, using current Java home), daemonOpts=[-XX:MaxMetaspaceSize=384m, -XX:+HeapDumpOnOutOfMemoryError, -Xms256m, -Xmx512m, -Dfile.encoding=UTF-8, -Duser.country=AR, -Duser.language=es, -Duser.variant], applyInstrumentationAgent=true, nativeServicesMode=ENABLED, priority=NORMAL}
+Actual: DefaultDaemonContext[uid=766fbd1a-505e-4c39-9210-0d931aed867d,javaHome=/opt/homebrew/Cellar/openjdk@21/21.0.8/libexec/openjdk.jdk/Contents/Home,javaVersion=21,javaVendor=Homebrew,daemonRegistryDir=/Users/palucho/.gradle/daemon,pid=2286,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-XX:MaxMetaspaceSize=384m,-XX:+HeapDumpOnOutOfMemoryError,-Xms256m,-Xmx512m,-Dfile.encoding=UTF-8,-Duser.country=AR,-Duser.language=es,-Duser.variant]
+
+  Looking for a different daemon...
+Found daemon DaemonInfo{pid=4119, address=[3a046ea9-7efd-4bad-8ee9-be3f2a1e64f2 port:51471, addresses:[/127.0.0.1]], state=Idle, lastBusy=1763956291414, context=DefaultDaemonContext[uid=5cba71b0-666c-4bb9-9152-fabe7bbc58d8,javaHome=/Users/palucho/.antigravity/extensions/redhat.java-1.49.0-darwin-arm64/jre/21.0.9-macosx-aarch64,javaVersion=21,javaVendor=Eclipse Adoptium,daemonRegistryDir=/Users/palucho/.gradle/daemon,pid=4119,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-XX:MaxMetaspaceSize=384m,-XX:+HeapDumpOnOutOfMemoryError,-Xms256m,-Xmx512m,-Dfile.encoding=UTF-8,-Duser.country=AR,-Duser.language=es,-Duser.variant]} however its context does not match the desired criteria.
+JVM is incompatible.
+Wanted: DaemonRequestContext{jvmCriteria=/Users/palucho/Library/Java/JavaVirtualMachines/openjdk-24.0.2+12-54/Contents/Home (no JDK specified, using current Java home), daemonOpts=[-XX:MaxMetaspaceSize=384m, -XX:+HeapDumpOnOutOfMemoryError, -Xms256m, -Xmx512m, -Dfile.encoding=UTF-8, -Duser.country=AR, -Duser.language=es, -Duser.variant], applyInstrumentationAgent=true, nativeServicesMode=ENABLED, priority=NORMAL}
+Actual: DefaultDaemonContext[uid=5cba71b0-666c-4bb9-9152-fabe7bbc58d8,javaHome=/Users/palucho/.antigravity/extensions/redhat.java-1.49.0-darwin-arm64/jre/21.0.9-macosx-aarch64,javaVersion=21,javaVendor=Eclipse Adoptium,daemonRegistryDir=/Users/palucho/.gradle/daemon,pid=4119,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-XX:MaxMetaspaceSize=384m,-XX:+HeapDumpOnOutOfMemoryError,-Xms256m,-Xmx512m,-Dfile.encoding=UTF-8,-Duser.country=AR,-Duser.language=es,-Duser.variant]
+
+  Looking for a different daemon...
+The client will now receive all logging from the daemon (pid: 3805). The daemon log file: /Users/palucho/.gradle/daemon/8.14/daemon-3805.out.log
+Starting 17th build in daemon [uptime: 8 mins 53.753 secs, performance: 100%, GC rate: 0.00/s, heap usage: 4% of 512 MiB, non-heap usage: 23% of 384 MiB]
+Using 10 worker leases.
+Now considering [/Users/palucho/Desktop/Facultad/Desarollo de Software/Clases Alberto/ExamenMercado] as hierarchies to watch
+Watching the file system is configured to be enabled if available
+File system watching is active
+Starting Build
+Settings evaluated using settings file '/Users/palucho/Desktop/Facultad/Desarollo de Software/Clases Alberto/ExamenMercado/settings.gradle'.
+Projects loaded. Root project using build file '/Users/palucho/Desktop/Facultad/Desarollo de Software/Clases Alberto/ExamenMercado/build.gradle'.
+Included projects: [root project 'ExamenMercado']
+
+> Configure project :
+Evaluating root project 'ExamenMercado' using build file '/Users/palucho/Desktop/Facultad/Desarollo de Software/Clases Alberto/ExamenMercado/build.gradle'.
+Resolved plugin [id: 'java']
+Resolved plugin [id: 'jacoco']
+Resolved plugin [id: 'org.springframework.boot', version: '3.2.0']
+Resolved plugin [id: 'io.spring.dependency-management', version: '1.1.4']
+Applying dependency management to configuration 'annotationProcessor' in project 'ExamenMercado'
+Applying dependency management to configuration 'apiElements' in project 'ExamenMercado'
+Applying dependency management to configuration 'archives' in project 'ExamenMercado'
+Applying dependency management to configuration 'bootArchives' in project 'ExamenMercado'
+Applying dependency management to configuration 'compileClasspath' in project 'ExamenMercado'
+Applying dependency management to configuration 'compileOnly' in project 'ExamenMercado'
+Applying dependency management to configuration 'coverageDataElementsForTest' in project 'ExamenMercado'
+Applying dependency management to configuration 'default' in project 'ExamenMercado'
+Applying dependency management to configuration 'developmentOnly' in project 'ExamenMercado'
+Applying dependency management to configuration 'implementation' in project 'ExamenMercado'
+Applying dependency management to configuration 'jacocoAgent' in project 'ExamenMercado'
+Applying dependency management to configuration 'jacocoAnt' in project 'ExamenMercado'
+Applying dependency management to configuration 'mainSourceElements' in project 'ExamenMercado'
+Applying dependency management to configuration 'productionRuntimeClasspath' in project 'ExamenMercado'
+Applying dependency management to configuration 'runtimeClasspath' in project 'ExamenMercado'
+Applying dependency management to configuration 'runtimeElements' in project 'ExamenMercado'
+Applying dependency management to configuration 'runtimeOnly' in project 'ExamenMercado'
+Applying dependency management to configuration 'testAndDevelopmentOnly' in project 'ExamenMercado'
+Applying dependency management to configuration 'testAnnotationProcessor' in project 'ExamenMercado'
+Applying dependency management to configuration 'testCompileClasspath' in project 'ExamenMercado'
+Applying dependency management to configuration 'testCompileOnly' in project 'ExamenMercado'
+Applying dependency management to configuration 'testImplementation' in project 'ExamenMercado'
+Applying dependency management to configuration 'testResultsElementsForTest' in project 'ExamenMercado'
+Applying dependency management to configuration 'testRuntimeClasspath' in project 'ExamenMercado'
+Applying dependency management to configuration 'testRuntimeOnly' in project 'ExamenMercado'
+All projects evaluated.
+Task name matched 'test'
+Selected primary task 'test' from project :
+Starting process 'command '/usr/libexec/java_home''. Working directory: /Users/palucho/.gradle/daemon/8.14 Command: /usr/libexec/java_home -V
+Successfully started process 'command '/usr/libexec/java_home''
+Tasks to be executed: [task ':compileJava', task ':processResources', task ':classes', task ':compileTestJava', task ':processTestResources', task ':testClasses', task ':test', task ':jacocoTestReport']
+Tasks that were excluded: []
+Resolve mutations for :compileJava (Thread[#1999,Execution worker,5,main]) started.
+:compileJava (Thread[#1999,Execution worker,5,main]) started.
+
+> Task :compileJava UP-TO-DATE
+Resolving global dependency management for project 'ExamenMercado'
+Excluding []
+Excluding []
+Custom actions are attached to task ':compileJava'.
+Caching disabled for task ':compileJava' because:
+  Build cache is disabled
+Skipping task ':compileJava' as it is up-to-date.
+Resolve mutations for :processResources (Thread[#1999,Execution worker,5,main]) started.
+:processResources (Thread[#1999,Execution worker,5,main]) started.
+
+> Task :processResources NO-SOURCE
+Skipping task ':processResources' as it has no source files and no previous output files.
+Resolve mutations for :classes (Thread[#1999,Execution worker,5,main]) started.
+:classes (Thread[#1999,Execution worker,5,main]) started.
+
+> Task :classes UP-TO-DATE
+Skipping task ':classes' as it has no actions.
+Resolve mutations for :compileTestJava (Thread[#1999,Execution worker,5,main]) started.
+:compileTestJava (Thread[#1999,Execution worker,5,main]) started.
+
+> Task :compileTestJava UP-TO-DATE
+Excluding []
+Excluding []
+Custom actions are attached to task ':compileTestJava'.
+Caching disabled for task ':compileTestJava' because:
+  Build cache is disabled
+Skipping task ':compileTestJava' as it is up-to-date.
+Resolve mutations for :processTestResources (Thread[#1999,Execution worker,5,main]) started.
+:processTestResources (Thread[#1999,Execution worker,5,main]) started.
+
+> Task :processTestResources NO-SOURCE
+Skipping task ':processTestResources' as it has no source files and no previous output files.
+Resolve mutations for :testClasses (Thread[#1999,Execution worker,5,main]) started.
+:testClasses (Thread[#1999,Execution worker,5,main]) started.
+
+> Task :testClasses UP-TO-DATE
+Skipping task ':testClasses' as it has no actions.
+Resolve mutations for :test (Thread[#1999,Execution worker,5,main]) started.
+:test (Thread[#1999,Execution worker,5,main]) started.
+Gradle Test Executor 10 started executing tests.
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+Gradle Test Executor 10 finished executing tests.
+
+> Task :test
+Excluding []
+Excluding []
+Custom actions are attached to task ':test'.
+Caching disabled for task ':test' because:
+  Build cache is disabled
+Task ':test' is not up-to-date because:
+  Task has failed previously.
+Starting process 'Gradle Test Executor 10'. Working directory: /Users/palucho/Desktop/Facultad/Desarollo de Software/Clases Alberto/ExamenMercado Command: /Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home/bin/java -Dorg.gradle.internal.worker.tmpdir=/Users/palucho/Desktop/Facultad/Desarollo de Software/Clases Alberto/ExamenMercado/build/tmp/test/work -javaagent:/Users/palucho/Desktop/Facultad/Desarollo de Software/Clases Alberto/ExamenMercado/build/tmp/.cache/expanded/zip_cde35f471dab581134460fc9a50e2c59/jacocoagent.jar=destfile=build/jacoco/test.exec,append=true,inclnolocationclasses=false,dumponexit=true,output=file,jmx=false @/Users/palucho/.gradle/.tmp/gradle-worker-classpath10894131322216571611txt -Xmx512m -Dfile.encoding=UTF-8 -Duser.country=AR -Duser.language=es -Duser.variant -ea worker.org.gradle.process.internal.worker.GradleWorkerMain 'Gradle Test Executor 10'
+Successfully started process 'Gradle Test Executor 10'
+
+MutantDetectorTest > testInvalidInputNxM() FAILED
+    org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+        at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+        at app//org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+        at app//org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+        at app//org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115)
+        at app//org.example.service.MutantDetectorTest.testInvalidInputNxM(MutantDetectorTest.java:125)
+
+MutantControllerTest STANDARD_OUT
+    00:54:53.777 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [org.example.controller.MutantControllerTest]: MutantControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+    00:54:53.856 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration org.example.Main for test class org.example.controller.MutantControllerTest
+
+      .   ____          _            __ _ _
+     /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+    ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+     \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+      '  |____| .__|_| |_|_| |_\__, | / / / /
+     =========|_|==============|___/=/_/_/_/
+     :: Spring Boot ::                (v3.2.0)
+
+    2025-11-24T00:54:54.018-03:00  INFO 7095 --- [    Test worker] o.e.controller.MutantControllerTest      : Starting MutantControllerTest using Java 17.0.17 with PID 7095 (started by palucho in /Users/palucho/Desktop/Facultad/Desarollo de Software/Clases Alberto/ExamenMercado)
+    2025-11-24T00:54:54.019-03:00  INFO 7095 --- [    Test worker] o.e.controller.MutantControllerTest      : No active profile set, falling back to 1 default profile: "default"
+    2025-11-24T00:54:55.072-03:00  INFO 7095 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+    2025-11-24T00:54:55.073-03:00  INFO 7095 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+    2025-11-24T00:54:55.074-03:00  INFO 7095 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+    2025-11-24T00:54:55.096-03:00  INFO 7095 --- [    Test worker] o.e.controller.MutantControllerTest      : Started MutantControllerTest in 1.208 seconds (process running for 1.793)
+
+15 tests completed, 1 failed
+Finished generating test XML results (0.0 secs) into: /Users/palucho/Desktop/Facultad/Desarollo de Software/Clases Alberto/ExamenMercado/build/test-results/test
+Generating HTML test report...
+Finished generating test html results (0.001 secs) into: /Users/palucho/Desktop/Facultad/Desarollo de Software/Clases Alberto/ExamenMercado/build/reports/tests/test
+
+> Task :test FAILED
+
+[Incubating] Problems report is available at: file:///Users/palucho/Desktop/Facultad/Desarollo%20de%20Software/Clases%20Alberto/ExamenMercado/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':test'.
+> There were failing tests. See the report at: file:///Users/palucho/Desktop/Facultad/Desarollo%20de%20Software/Clases%20Alberto/ExamenMercado/build/reports/tests/test/index.html
+
+* Try:
+> Run with --scan to get full insights.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 2s
+3 actionable tasks: 1 executed, 2 up-to-date
+Watched directory hierarchies: [/Users/palucho/Desktop/Facultad/Desarollo de Software/Clases Alberto/ExamenMercado]
