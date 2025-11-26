@@ -6,19 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 
 /**
- * Service for detecting mutants based on DNA sequence analysis.
- * 
- * A human is considered a mutant if their DNA contains more than one sequence
- * of four identical letters (A, T, C, G) in any direction: horizontal,
- * vertical,
- * or diagonal.
- * 
- * Optimizations implemented:
- * - Early Termination: stops as soon as >1 sequences are found
- * - Single Pass: traverses the matrix only once
- * - Boundary Checking: validates boundaries before searching
- * - Direct Comparison: uses direct comparison instead of loops
- * - Validation Set O(1): constant-time character validation
+ * Servicio de detección de mutantes basado en análisis de secuencias de ADN.
  */
 @Slf4j
 @Service
@@ -27,16 +15,10 @@ public class MutantDetector {
     private static final int SEQUENCE_LENGTH = 4;
     private static final Set<Character> VALID_BASES = Set.of('A', 'T', 'C', 'G');
 
-    /**
-     * Determines if a DNA sequence belongs to a mutant.
-     * 
-     * @param dna Array of strings representing DNA sequences (NxN matrix)
-     * @return true if mutant (>1 sequences found), false otherwise
-     */
     public boolean isMutant(String[] dna) {
         log.debug("Starting mutant detection analysis");
 
-        // Validation: null or empty array
+        // Validation: array nulo o vacio
         if (dna == null || dna.length == 0) {
             log.warn("DNA validation failed: null or empty array");
             return false;
@@ -45,22 +27,22 @@ public class MutantDetector {
         int n = dna.length;
         log.debug("Analyzing DNA matrix of size {}x{}", n, n);
 
-        // Validation: minimum size
+        // Validation: tamaño minimo
         if (n < SEQUENCE_LENGTH) {
             log.warn("DNA validation failed: matrix size {}x{} is below minimum {}", n, n, SEQUENCE_LENGTH);
             return false;
         }
 
-        // Convert to char[][] for O(1) access and validate
+        // Convertir a char[][] para acceder a O(1) y validar
         char[][] matrix = new char[n][];
         for (int i = 0; i < n; i++) {
-            // Validation: null row
+            // Validation: fila nula
             if (dna[i] == null) {
                 log.warn("DNA validation failed: null row at index {}", i);
                 return false;
             }
 
-            // Validation: non-square matrix
+            // Validation: matriz no cuadrada
             if (dna[i].length() != n) {
                 log.warn("DNA validation failed: row {} has length {} (expected {})", i, dna[i].length(), n);
                 return false;
@@ -68,7 +50,7 @@ public class MutantDetector {
 
             matrix[i] = dna[i].toCharArray();
 
-            // Validation: only A, T, C, G allowed
+            // Validation: solo A, T, C, G permitidas
             for (char c : matrix[i]) {
                 if (!VALID_BASES.contains(c)) {
                     log.warn("DNA validation failed: invalid character '{}' found at row {}", c, i);
@@ -79,12 +61,10 @@ public class MutantDetector {
 
         int sequenceCount = 0;
 
-        // Single Pass: traverse matrix once checking all directions
+        // Paso único: recorra la matriz una vez verificando todas las direcciones
         for (int row = 0; row < n; row++) {
             for (int col = 0; col < n; col++) {
                 char base = matrix[row][col];
-
-                // Boundary Checking: only check if sequence can fit
 
                 // Check Horizontal (→)
                 if (col <= n - SEQUENCE_LENGTH) {
@@ -146,8 +126,8 @@ public class MutantDetector {
     }
 
     /**
-     * Direct Comparison: checks horizontal sequence without loop.
-     * More efficient than generic checkDirection with loop.
+     * Comparación directa: comprueba secuencia horizontal sin bucle.
+     * Más eficiente que checkDirection genérico con bucle.
      */
     private boolean checkHorizontal(char[][] matrix, int row, int col, char base) {
         return matrix[row][col + 1] == base &&
@@ -156,7 +136,7 @@ public class MutantDetector {
     }
 
     /**
-     * Direct Comparison: checks vertical sequence without loop.
+     * Comparación directa: comprueba secuencia vertical sin bucle.
      */
     private boolean checkVertical(char[][] matrix, int row, int col, char base) {
         return matrix[row + 1][col] == base &&
@@ -165,7 +145,7 @@ public class MutantDetector {
     }
 
     /**
-     * Direct Comparison: checks diagonal descending sequence without loop.
+     * Comparación directa: comprueba la secuencia descendente diagonal sin bucle.
      */
     private boolean checkDiagonalDescending(char[][] matrix, int row, int col, char base) {
         return matrix[row + 1][col + 1] == base &&
@@ -174,7 +154,7 @@ public class MutantDetector {
     }
 
     /**
-     * Direct Comparison: checks diagonal ascending sequence without loop.
+     * Comparación directa: comprueba la secuencia ascendente diagonal sin bucle.
      */
     private boolean checkDiagonalAscending(char[][] matrix, int row, int col, char base) {
         return matrix[row - 1][col + 1] == base &&

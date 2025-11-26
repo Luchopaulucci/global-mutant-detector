@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Comprehensive test suite for MutantDetector algorithm.
- * 
  * Tests cover:
  * - Mutant detection (horizontal, vertical, diagonal sequences)
  * - Non-mutant detection (0 or 1 sequences)
@@ -26,21 +24,16 @@ class MutantDetectorTest {
         mutantDetector = new MutantDetector();
     }
 
-    // =====================================================================
-    // MUTANT DETECTION TESTS (should return true)
-    // =====================================================================
-
     @Test
     @DisplayName("Should detect mutant with horizontal and diagonal sequences")
     void testMutantWithHorizontalAndDiagonalSequences() {
         String[] dna = {
-                "ATGCGA", // Row 0
-                "CAGTGC", // Row 1
-                "TTATGT", // Row 2
-                "AGAAGG", // Row 3
-                "CCCCTA", // Row 4 ← Horizontal: CCCC
-                "TCACTG" // Row 5
-                // Diagonal (↘): A-A-A-A at positions (0,0)(1,1)(2,2)(3,3)
+                "ATGCGA",
+                "CAGTGC",
+                "TTATGT",
+                "AGAAGG",
+                "CCCCTA",
+                "TCACTG"
         };
         assertTrue(mutantDetector.isMutant(dna), "Should detect mutant with 2+ sequences");
     }
@@ -55,8 +48,6 @@ class MutantDetectorTest {
                 "AGAAGG",
                 "CCCCTA",
                 "TCACTG"
-                // Column 0: A-A-A-A (4 A's)
-                // Row 4: C-C-C-C (4 C's)
         };
         assertTrue(mutantDetector.isMutant(dna), "Should detect mutant with vertical sequences");
     }
@@ -65,11 +56,11 @@ class MutantDetectorTest {
     @DisplayName("Should detect mutant with multiple horizontal sequences")
     void testMutantWithMultipleHorizontalSequences() {
         String[] dna = {
-                "TTTTGA", // Sequence 1: TTTT
+                "TTTTGA",
                 "CAGTGC",
                 "TTATGT",
                 "AGAAGG",
-                "CCCCTA", // Sequence 2: CCCC
+                "CCCCTA",
                 "TCACTG"
         };
         assertTrue(mutantDetector.isMutant(dna), "Should detect multiple horizontal sequences");
@@ -83,9 +74,8 @@ class MutantDetectorTest {
                 "CAGTGC",
                 "TTATGT",
                 "AGAAGG",
-                "CCCCTA", // Horizontal: CCCC
+                "CCCCTA",
                 "TCACTG"
-                // Plus diagonal descending A-A-A-A
         };
         assertTrue(mutantDetector.isMutant(dna), "Should detect diagonals");
     }
@@ -94,8 +84,8 @@ class MutantDetectorTest {
     @DisplayName("Should detect mutant in small 4x4 matrix")
     void testSmallMatrix4x4Mutant() {
         String[] dna = {
-                "AAAA", // Horizontal: AAAA
-                "CCCC", // Horizontal: CCCC
+                "AAAA",
+                "CCCC",
                 "TTAT",
                 "AGAC"
         };
@@ -110,7 +100,7 @@ class MutantDetectorTest {
                 "CAGTGCCAGT",
                 "TTATGTTTAT",
                 "AGAAGGATAA",
-                "CCCCTACCCC", // 2 horizontals: CCCC
+                "CCCCTACCCC",
                 "TCACTGTCAC",
                 "ATGCGAATGC",
                 "CAGTGCCAGT",
@@ -138,9 +128,9 @@ class MutantDetectorTest {
     @DisplayName("Should use early termination for efficiency")
     void testEarlyTermination() {
         String[] dna = {
-                "AAAAGA", // Sequence 1: AAAA
-                "AAAAGC", // Sequence 2: AAAA (early termination here)
-                "TTATGT", // Should not process beyond this point
+                "AAAAGA",
+                "AAAAGC",
+                "TTATGT",
                 "AGAAGG",
                 "CCCCTA",
                 "TCACTG"
@@ -155,17 +145,13 @@ class MutantDetectorTest {
         assertTrue(duration < 10, "Should complete in less than 10ms (early termination)");
     }
 
-    // =====================================================================
-    // NON-MUTANT DETECTION TESTS (should return false)
-    // =====================================================================
-
     @Test
     @DisplayName("Should not detect mutant with only one sequence")
     void testNotMutantWithOnlyOneSequence() {
         String[] dna = {
                 "ATGCGA",
                 "CAGTGC",
-                "TTATTT", // Only 1 sequence: TTT (but only 3, not 4)
+                "TTATTT",
                 "AGACGG",
                 "GCGTCA",
                 "TCACTG"
@@ -185,10 +171,6 @@ class MutantDetectorTest {
         assertFalse(mutantDetector.isMutant(dna), "Should NOT detect mutant with no sequences");
     }
 
-    // =====================================================================
-    // VALIDATION TESTS (should return false for invalid input)
-    // =====================================================================
-
     @Test
     @DisplayName("Should reject null DNA array")
     void testNullDna() {
@@ -206,9 +188,9 @@ class MutantDetectorTest {
     @DisplayName("Should reject non-square matrix")
     void testNonSquareMatrix() {
         String[] dna = {
-                "ATGCGA", // 6 characters
-                "CAGTGC", // 6 characters
-                "TTATGT" // 6 characters, but only 3 rows
+                "ATGCGA",
+                "CAGTGC",
+                "TTATGT"
         };
         assertFalse(mutantDetector.isMutant(dna), "Non-square matrix should return false");
     }
@@ -218,7 +200,7 @@ class MutantDetectorTest {
     void testInvalidCharacters() {
         String[] dna = {
                 "ATGCGA",
-                "CAGTXC", // 'X' is invalid
+                "CAGTXC",
                 "TTATGT",
                 "AGAAGG",
                 "CCCCTA",
@@ -232,7 +214,7 @@ class MutantDetectorTest {
     void testNullRowInArray() {
         String[] dna = {
                 "ATGCGA",
-                null, // Null row
+                null,
                 "TTATGT",
                 "AGAAGG",
                 "CCCCTA",
@@ -263,8 +245,7 @@ class MutantDetectorTest {
                 "CCGCTA",
                 "TCGCTG"
         };
-        // This test verifies that ascending diagonals (↗) are checked
         boolean result = mutantDetector.isMutant(dna);
-        assertNotNull(result); // Valid execution without exceptions
+        assertNotNull(result);
     }
 }

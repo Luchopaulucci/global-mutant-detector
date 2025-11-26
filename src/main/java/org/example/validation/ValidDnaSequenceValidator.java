@@ -18,7 +18,7 @@ public class ValidDnaSequenceValidator implements ConstraintValidator<ValidDnaSe
 
         int n = dna.length;
 
-        // Validation: maximum size check
+        // Validation: tamaño maximo
         if (n > MAX_DNA_SIZE) {
             context.disableDefaultConstraintViolation();
             context.buildConstraintViolationWithTemplate(

@@ -19,7 +19,6 @@ import static org.mockito.Mockito.*;
 
 /**
  * Test suite for GlobalExceptionHandler.
- * Tests exception handling and error response formatting.
  */
 @ExtendWith(MockitoExtension.class)
 class GlobalExceptionHandlerTest {

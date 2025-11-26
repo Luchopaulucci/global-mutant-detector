@@ -14,8 +14,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Integration tests for MutantController endpoints.
- * 
  * Tests cover:
  * - POST /mutant with valid mutant DNA (200 OK)
  * - POST /mutant with valid human DNA (403 Forbidden)

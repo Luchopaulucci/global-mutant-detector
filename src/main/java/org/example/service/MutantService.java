@@ -13,9 +13,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 /**
- * Service for analyzing DNA sequences and managing mutant detection results.
- * 
- * Handles caching of DNA analysis results using SHA-256 hash for deduplication.
+ * Servicio para analizar secuencias de ADN y gestionar resultados de detección de mutantes.
  */
 @Service
 @RequiredArgsConstructor
@@ -24,28 +22,20 @@ public class MutantService {
     private final MutantDetector mutantDetector;
     private final DnaRecordRepository dnaRecordRepository;
 
-    /**
-     * Analyzes a DNA sequence to determine if it belongs to a mutant.
-     * Results are cached in memory (L1) and database (L2) to avoid redundant
-     * processing.
-     * 
-     * @param dna Array of strings representing the DNA sequence
-     * @return true if mutant, false if human
-     */
     @Cacheable(value = "dnaCache", key = "#dna")
     public boolean analyzeDna(String[] dna) {
         String dnaHash = calculateDnaHash(dna);
 
-        // Check if already analyzed (deduplication)
+        // Mira si esta duplicado
         Optional<DnaRecord> existingRecord = dnaRecordRepository.findByDnaHash(dnaHash);
         if (existingRecord.isPresent()) {
             return existingRecord.get().isMutant();
         }
 
-        // Analyze DNA
+        // Analiza el DNA
         boolean isMutant = mutantDetector.isMutant(dna);
 
-        // Save result for future queries
+        // guarda el resultado
         DnaRecord record = new DnaRecord();
         record.setDnaHash(dnaHash);
         record.setMutant(isMutant);
@@ -54,13 +44,6 @@ public class MutantService {
         return isMutant;
     }
 
-    /**
-     * Calculates SHA-256 hash of DNA sequence for deduplication.
-     * 
-     * @param dna Array of strings representing the DNA sequence
-     * @return Hexadecimal string representation of the SHA-256 hash
-     * @throws DnaHashCalculationException if hash calculation fails
-     */
     private String calculateDnaHash(String[] dna) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");

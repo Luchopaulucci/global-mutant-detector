@@ -14,8 +14,7 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 /**
- * Controller for health check endpoint.
- * Provides application health status without depending on business logic.
+ * Controller para el endpoint de Healt.
  */
 @RestController
 @RequestMapping

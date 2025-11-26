@@ -1,7 +1,7 @@
 package org.example.exception;
 
 /**
- * Custom exception thrown when DNA hash calculation fails.
+ * Se lanza una excepción personalizada cuando falla el cálculo del hash de ADN.
  */
 public class DnaHashCalculationException extends RuntimeException {
 
