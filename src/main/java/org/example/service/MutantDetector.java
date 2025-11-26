@@ -1,5 +1,6 @@
 package org.example.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -19,6 +20,7 @@ import java.util.Set;
  * - Direct Comparison: uses direct comparison instead of loops
  * - Validation Set O(1): constant-time character validation
  */
+@Slf4j
 @Service
 public class MutantDetector {
 
@@ -32,15 +34,20 @@ public class MutantDetector {
      * @return true if mutant (>1 sequences found), false otherwise
      */
     public boolean isMutant(String[] dna) {
+        log.debug("Starting mutant detection analysis");
+
         // Validation: null or empty array
         if (dna == null || dna.length == 0) {
+            log.warn("DNA validation failed: null or empty array");
             return false;
         }
 
         int n = dna.length;
+        log.debug("Analyzing DNA matrix of size {}x{}", n, n);
 
         // Validation: minimum size
         if (n < SEQUENCE_LENGTH) {
+            log.warn("DNA validation failed: matrix size {}x{} is below minimum {}", n, n, SEQUENCE_LENGTH);
             return false;
         }
 
@@ -49,11 +56,13 @@ public class MutantDetector {
         for (int i = 0; i < n; i++) {
             // Validation: null row
             if (dna[i] == null) {
+                log.warn("DNA validation failed: null row at index {}", i);
                 return false;
             }
 
             // Validation: non-square matrix
             if (dna[i].length() != n) {
+                log.warn("DNA validation failed: row {} has length {} (expected {})", i, dna[i].length(), n);
                 return false;
             }
 
@@ -62,6 +71,7 @@ public class MutantDetector {
             // Validation: only A, T, C, G allowed
             for (char c : matrix[i]) {
                 if (!VALID_BASES.contains(c)) {
+                    log.warn("DNA validation failed: invalid character '{}' found at row {}", c, i);
                     return false;
                 }
             }
@@ -80,8 +90,12 @@ public class MutantDetector {
                 if (col <= n - SEQUENCE_LENGTH) {
                     if (checkHorizontal(matrix, row, col, base)) {
                         sequenceCount++;
-                        if (sequenceCount > 1)
+                        log.debug("Horizontal sequence found at row={}, col={}, base='{}', count={}", row, col, base,
+                                sequenceCount);
+                        if (sequenceCount > 1) {
+                            log.info("Mutant detected! Found {} sequences. Early termination.", sequenceCount);
                             return true; // Early Termination
+                        }
                     }
                 }
 
@@ -89,8 +103,12 @@ public class MutantDetector {
                 if (row <= n - SEQUENCE_LENGTH) {
                     if (checkVertical(matrix, row, col, base)) {
                         sequenceCount++;
-                        if (sequenceCount > 1)
+                        log.debug("Vertical sequence found at row={}, col={}, base='{}', count={}", row, col, base,
+                                sequenceCount);
+                        if (sequenceCount > 1) {
+                            log.info("Mutant detected! Found {} sequences. Early termination.", sequenceCount);
                             return true; // Early Termination
+                        }
                     }
                 }
 
@@ -98,8 +116,12 @@ public class MutantDetector {
                 if (row <= n - SEQUENCE_LENGTH && col <= n - SEQUENCE_LENGTH) {
                     if (checkDiagonalDescending(matrix, row, col, base)) {
                         sequenceCount++;
-                        if (sequenceCount > 1)
+                        log.debug("Diagonal descending sequence found at row={}, col={}, base='{}', count={}", row, col,
+                                base, sequenceCount);
+                        if (sequenceCount > 1) {
+                            log.info("Mutant detected! Found {} sequences. Early termination.", sequenceCount);
                             return true; // Early Termination
+                        }
                     }
                 }
 
@@ -107,13 +129,19 @@ public class MutantDetector {
                 if (row >= SEQUENCE_LENGTH - 1 && col <= n - SEQUENCE_LENGTH) {
                     if (checkDiagonalAscending(matrix, row, col, base)) {
                         sequenceCount++;
-                        if (sequenceCount > 1)
+                        log.debug("Diagonal ascending sequence found at row={}, col={}, base='{}', count={}", row, col,
+                                base, sequenceCount);
+                        if (sequenceCount > 1) {
+                            log.info("Mutant detected! Found {} sequences. Early termination.", sequenceCount);
                             return true; // Early Termination
+                        }
                     }
                 }
             }
         }
 
+        log.info("Analysis complete. Result: {} (sequences found: {})", sequenceCount > 1 ? "MUTANT" : "HUMAN",
+                sequenceCount);
         return false;
     }
 

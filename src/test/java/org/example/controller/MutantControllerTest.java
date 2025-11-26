@@ -28,145 +28,145 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class MutantControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+        @Autowired
+        private MockMvc mockMvc;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+        @Autowired
+        private ObjectMapper objectMapper;
 
-    @Test
-    @DisplayName("POST /mutant should return 200 OK for mutant DNA")
-    void testMutantEndpoint_ReturnOk() throws Exception {
-        String[] dna = {
-                "ATGCGA",
-                "CAGTGC",
-                "TTATGT",
-                "AGAAGG",
-                "CCCCTA",
-                "TCACTG"
-        };
-        DnaRequest request = new DnaRequest(dna);
+        @Test
+        @DisplayName("POST /mutant should return 200 OK for mutant DNA")
+        void testMutantEndpoint_ReturnOk() throws Exception {
+                String[] dna = {
+                                "ATGCGA",
+                                "CAGTGC",
+                                "TTATGT",
+                                "AGAAGG",
+                                "CCCCTA",
+                                "TCACTG"
+                };
+                DnaRequest request = new DnaRequest(dna);
 
-        mockMvc.perform(post("/mutant")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk());
-    }
+                mockMvc.perform(post("/mutant")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(request)))
+                                .andExpect(status().isOk());
+        }
 
-    @Test
-    @DisplayName("POST /mutant should return 403 Forbidden for human DNA")
-    void testHumanEndpoint_ReturnForbidden() throws Exception {
-        String[] dna = {
-                "ATGCGA",
-                "CAGTGC",
-                "TTATTT",
-                "AGACGG",
-                "GCGTCA",
-                "TCACTG"
-        };
-        DnaRequest request = new DnaRequest(dna);
+        @Test
+        @DisplayName("POST /mutant should return 403 Forbidden for human DNA")
+        void testHumanEndpoint_ReturnForbidden() throws Exception {
+                String[] dna = {
+                                "ATGCGA",
+                                "CAGTGC",
+                                "TTATTT",
+                                "AGACGG",
+                                "GCGTCA",
+                                "TCACTG"
+                };
+                DnaRequest request = new DnaRequest(dna);
 
-        mockMvc.perform(post("/mutant")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isForbidden());
-    }
+                mockMvc.perform(post("/mutant")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(request)))
+                                .andExpect(status().isForbidden());
+        }
 
-    @Test
-    @DisplayName("POST /mutant should return 400 Bad Request for invalid DNA (non-square)")
-    void testInvalidDna_ReturnBadRequest() throws Exception {
-        String[] dna = {
-                "ATGX",
-                "CAGT"
-        };
-        DnaRequest request = new DnaRequest(dna);
+        @Test
+        @DisplayName("POST /mutant should return 400 Bad Request for invalid DNA (non-square)")
+        void testInvalidDna_ReturnBadRequest() throws Exception {
+                String[] dna = {
+                                "ATGX",
+                                "CAGT"
+                };
+                DnaRequest request = new DnaRequest(dna);
 
-        mockMvc.perform(post("/mutant")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isBadRequest());
-    }
+                mockMvc.perform(post("/mutant")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(request)))
+                                .andExpect(status().isBadRequest());
+        }
 
-    @Test
-    @DisplayName("POST /mutant should return 400 Bad Request for empty DNA")
-    void testEmptyDna_ReturnBadRequest() throws Exception {
-        String[] dna = {};
-        DnaRequest request = new DnaRequest(dna);
+        @Test
+        @DisplayName("POST /mutant should return 400 Bad Request for empty DNA")
+        void testEmptyDna_ReturnBadRequest() throws Exception {
+                String[] dna = {};
+                DnaRequest request = new DnaRequest(dna);
 
-        mockMvc.perform(post("/mutant")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isBadRequest());
-    }
+                mockMvc.perform(post("/mutant")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(request)))
+                                .andExpect(status().isBadRequest());
+        }
 
-    @Test
-    @DisplayName("POST /mutant should return 400 Bad Request for null DNA")
-    void testNullDna_ReturnBadRequest() throws Exception {
-        String jsonWithNullDna = "{\"dna\": null}";
+        @Test
+        @DisplayName("POST /mutant should return 400 Bad Request for null DNA")
+        void testNullDna_ReturnBadRequest() throws Exception {
+                String jsonWithNullDna = "{\"dna\": null}";
 
-        mockMvc.perform(post("/mutant")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonWithNullDna))
-                .andExpect(status().isBadRequest());
-    }
+                mockMvc.perform(post("/mutant")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonWithNullDna))
+                                .andExpect(status().isBadRequest());
+        }
 
-    @Test
-    @DisplayName("GET /stats should return 200 OK")
-    void testStatsEndpoint_ReturnOk() throws Exception {
-        mockMvc.perform(get("/stats"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
-    }
+        @Test
+        @DisplayName("GET /stats should return 200 OK")
+        void testStatsEndpoint_ReturnOk() throws Exception {
+                mockMvc.perform(get("/stats"))
+                                .andExpect(status().isOk())
+                                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+        }
 
-    @Test
-    @DisplayName("GET /stats should return correct JSON format")
-    void testStatsEndpoint_CorrectFormat() throws Exception {
-        mockMvc.perform(get("/stats"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.count_mutant_dna").exists())
-                .andExpect(jsonPath("$.count_human_dna").exists())
-                .andExpect(jsonPath("$.ratio").exists());
-    }
+        @Test
+        @DisplayName("GET /stats should return correct JSON format")
+        void testStatsEndpoint_CorrectFormat() throws Exception {
+                mockMvc.perform(get("/stats"))
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$.count_mutant_dna").exists())
+                                .andExpect(jsonPath("$.count_human_dna").exists())
+                                .andExpect(jsonPath("$.ratio").exists());
+        }
 
-    @Test
-    @DisplayName("Multiple requests should update stats correctly")
-    void testMultipleRequests_StatsUpdate() throws Exception {
-        // Send mutant DNA
-        String[] mutantDna = {
-                "AAAAGA",
-                "CAGTGC",
-                "TTATGT",
-                "AGAAGG",
-                "CCCCTA",
-                "TCACTG"
-        };
-        DnaRequest mutantRequest = new DnaRequest(mutantDna);
+        @Test
+        @DisplayName("Multiple requests should update stats correctly")
+        void testMultipleRequests_StatsUpdate() throws Exception {
+                // Send mutant DNA
+                String[] mutantDna = {
+                                "AAAAGA",
+                                "CAGTGC",
+                                "TTATGT",
+                                "AGAAGG",
+                                "CCCCTA",
+                                "TCACTG"
+                };
+                DnaRequest mutantRequest = new DnaRequest(mutantDna);
 
-        mockMvc.perform(post("/mutant")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(mutantRequest)))
-                .andExpect(status().isOk());
+                mockMvc.perform(post("/mutant")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(mutantRequest)))
+                                .andExpect(status().isOk());
 
-        // Send human DNA
-        String[] humanDna = {
-                "ATGCGA",
-                "CAGTGC",
-                "TTATTT",
-                "AGACGG",
-                "GCGTCA",
-                "TCACTG"
-        };
-        DnaRequest humanRequest = new DnaRequest(humanDna);
+                // Send human DNA
+                String[] humanDna = {
+                                "ATGCGA",
+                                "CAGTGC",
+                                "TTATTT",
+                                "AGACGG",
+                                "GCGTCA",
+                                "TCACTG"
+                };
+                DnaRequest humanRequest = new DnaRequest(humanDna);
 
-        mockMvc.perform(post("/mutant")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(humanRequest)))
-                .andExpect(status().isForbidden());
+                mockMvc.perform(post("/mutant")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(humanRequest)))
+                                .andExpect(status().isForbidden());
 
-        // Verify stats are updated
-        mockMvc.perform(get("/stats"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.count_mutant_dna").isNumber())
-                .andExpect(jsonPath("$.count_human_dna").isNumber());
-    }
+                // Verify stats are updated
+                mockMvc.perform(get("/stats"))
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$.count_mutant_dna").isNumber())
+                                .andExpect(jsonPath("$.count_human_dna").isNumber());
+        }
 }

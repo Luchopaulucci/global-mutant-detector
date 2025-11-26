@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.entity.DnaRecord;
 import org.example.exception.DnaHashCalculationException;
 import org.example.repository.DnaRecordRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
@@ -25,11 +26,13 @@ public class MutantService {
 
     /**
      * Analyzes a DNA sequence to determine if it belongs to a mutant.
-     * Results are cached in the database to avoid redundant processing.
+     * Results are cached in memory (L1) and database (L2) to avoid redundant
+     * processing.
      * 
      * @param dna Array of strings representing the DNA sequence
      * @return true if mutant, false if human
      */
+    @Cacheable(value = "dnaCache", key = "#dna")
     public boolean analyzeDna(String[] dna) {
         String dnaHash = calculateDnaHash(dna);
 
